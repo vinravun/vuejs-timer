@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>A timer with Vue.js</title>
+	<link rel="stylesheet" href="css/main.css">
+
+	<script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
+
+	<body>
+		<div id="app">
+
+			<span class="time-display" v-cloak> 
+			{{ checkSingleDigit(minutes) }}:{{ checkSingleDigit(seconds) }}:{{ checkSingleDigit(centiseconds) }} 
+			</span>
+
+			<div class="buttons-wrapper" v-cloak>
+				<button class="start-stop-btn" @click="toggleTimerState" v-bind:class="{ active: running }"> </button>
+				<button class="lap" @click="saveLapTime" v-if="running"></button>
+				<button class="reset" @click="resetTimer" v-else></button>
+			</div>
+
+			<ul class="laps-list" v-show="lapSet" v-cloak>
+				<li v-for="lapItem in lapsRecorded"> {{ lapItem }}</li>
+			</ul>
+
+		</div>
+	</body>
+
+
+	<script>
+		
+		var app = new Vue({
+			el: '#app',
+			data: {
+				running: false,
+				lapSet: false,
+
+				minutes: 0,
+				seconds: 0,
+				centiseconds: 0,
+
+				prevLapMinutes: 0,
+				prevLapSeconds: 0,
+				prevLapCentiseconds: 0,
+
+				lapMinutes: 0,
+				lapSeconds: 0,
+				lapCentiseconds: 0,
+				lapsRecorded: [],
+				lapIndex: 0
+			},		
+			methods: {
+				runTimer: function() {
+						console.log('Timer running');
+						this.timerRunning = setInterval(function() {
+							if(this.centiseconds >= 99) {
+								this.seconds++;
+								this.centiseconds = 0;
+							}
+							if(this.seconds >= 60) {
+								this.minutes++;
+								this.seconds = 0;
+							}
+							this.centiseconds++;
+					}.bind(this), 10);
+				},
+				stopTimer: function() {
+					console.log('Timer stopped.');
+					clearInterval(this.timerRunning);
+				},
+				toggleTimerState: function() {
+					this.running ? this.stopTimer() : this.runTimer();
+					this.running = !this.running;
+				},
+				checkSingleDigit: function(num) {
+					return (num < 10) ? ('0' + num):(num);
+				},
+				resetTimer: function() {
+					console.log('Timer reset.');
+					this.lapsRecorded = [];
+					this.lapSet = false;
+					this.centiseconds = this.seconds = this.minutes = 0;
+					this.lapCentiseconds = this.lapSeconds = this.lapMinutes = this.lapIndex = 0;
+					this.prevLapCentiseconds = this.prevLapSeconds = this.prevLapMinutes = 0;
+				},
+				saveLapTime: function() {
+					this.lapSet = true;
+					this.lapMinutes = (this.minutes - this.prevLapMinutes);
+					this.lapSeconds = (this.seconds - this.prevLapSeconds);
+					this.lapCentiseconds = (this.centiseconds - this.prevLapCentiseconds);
+
+					if(this.lapSeconds < 0) {
+						this.lapSeconds = 60 + this.lapSeconds;
+						this.lapMinutes--;
+					}
+					if(this.lapCentiseconds < 0) {
+						this.lapCentiseconds = 100 + this.lapCentiseconds;
+						this.lapSeconds--;
+					}
+
+					this.lapIndex++;
+
+					this.lapsRecorded.unshift(this.checkSingleDigit(this.lapIndex) + ". Lap time - " + 
+						 this.checkSingleDigit(this.lapMinutes) + ':' +
+						 this.checkSingleDigit(this.lapSeconds) + ':' +
+						 this.checkSingleDigit(this.lapCentiseconds));
+					console.log("Lap time recorded.");
+
+					this.prevLapCentiseconds = this.centiseconds;
+					this.prevLapSeconds = this.seconds;
+					this.prevLapMinutes = this.minutes;
+				},
+			}
+		})
+
+	</script>
+</html>

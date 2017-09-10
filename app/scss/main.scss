@@ -1,0 +1,90 @@
+//Styles for timer
+
+$font-stack: Helvetica, sans-serif;
+$time-font-size: 120px;
+$lap-font-size: 20px;
+
+$primary-color: #cccccc;
+$bg-color: #262626;
+$shadow-color: rgba(0, 0, 0, 0.3);
+$item-border-color: #777;
+
+$button-height: 60px;
+$button-width: $button-height;
+
+html, body, ul, ol {
+  margin:  0;
+  padding: 0;
+}
+
+body {
+	background-color: $bg-color;
+	color: $primary-color;
+	font: 100% $font-stack;
+}
+
+#app {
+	max-width: 640px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 50px 20px;
+
+	.time-display {
+		display: block;
+		margin-bottom: 30px;
+		font-size: $time-font-size;
+		text-align: center;
+		transition: all 0.5s linear;
+	}
+
+	.buttons-wrapper {
+		display: flex;
+		margin: 0 auto 40px;
+		justify-content: space-evenly;
+	}
+}
+
+button {
+	width: $button-width;
+	height: $button-height;
+	border: 3px solid #262626;
+	border-radius: 50%;
+	box-shadow: 0 0 25px $shadow-color;
+	outline: none;
+	cursor: pointer;
+
+	&.start-stop-btn {
+		background: #eee url('../icons/flag.svg') no-repeat center;
+
+		&.active{
+			background: #eee url('../icons/power.svg') no-repeat center;
+		}
+	}
+
+	&.reset {
+		background: #eee url('../icons/rotate-ccw.svg') no-repeat center;
+	}
+
+	&.lap{
+		background: #eee url('../icons/bookmark.svg') no-repeat center;
+	}
+
+}
+
+.laps-list {
+	list-style-type: none;
+	padding-top: 10px;
+	border-top: 2px solid $primary-color;
+	text-align: center;
+
+	li {
+		padding: 10px 0;
+		border-bottom: 1px solid $item-border-color;
+		font-size: $lap-font-size;
+
+		&:last-child {
+			margin-bottom: 0;
+			border-bottom: none;
+		}
+	}
+}

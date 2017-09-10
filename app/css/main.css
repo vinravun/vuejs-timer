@@ -1,0 +1,60 @@
+html, body, ul, ol {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: #262626;
+  color: #cccccc;
+  font: 100% Helvetica, sans-serif; }
+
+#app {
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px 20px; }
+  #app .time-display {
+    display: block;
+    margin-bottom: 30px;
+    font-size: 120px;
+    text-align: center;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear; }
+  #app .buttons-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 auto 40px;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly; }
+
+button {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #262626;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  outline: none;
+  cursor: pointer; }
+  button.start-stop-btn {
+    background: #eee url("../icons/flag.svg") no-repeat center; }
+    button.start-stop-btn.active {
+      background: #eee url("../icons/power.svg") no-repeat center; }
+  button.reset {
+    background: #eee url("../icons/rotate-ccw.svg") no-repeat center; }
+  button.lap {
+    background: #eee url("../icons/bookmark.svg") no-repeat center; }
+
+.laps-list {
+  list-style-type: none;
+  padding-top: 10px;
+  border-top: 2px solid #cccccc;
+  text-align: center; }
+  .laps-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #777;
+    font-size: 20px; }
+    .laps-list li:last-child {
+      margin-bottom: 0;
+      border-bottom: none; }
