@@ -3,57 +3,98 @@ html, body, ul, ol {
   padding: 0; }
 
 body {
-  background-color: #262626;
-  color: #cccccc;
+  background-color: #e85a4f;
+  color: #eae7dc;
   font: 100% Helvetica, sans-serif; }
 
 #app {
-  max-width: 640px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 50px 20px; }
-  #app .time-display {
-    display: block;
-    margin-bottom: 30px;
-    font-size: 120px;
-    text-align: center;
-    -webkit-transition: all 0.5s linear;
-    transition: all 0.5s linear; }
-  #app .buttons-wrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin: 0 auto 40px;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly; }
+  padding: 70px 30px 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly; }
+  @media (min-width: 768px) {
+    #app {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      padding: 100px 50px 50px; } }
+  #app .timer-container {
+    margin-bottom: 40px; }
+    @media (min-width: 768px) {
+      #app .timer-container {
+        margin: 0 40px 0 0; } }
+    #app .timer-container .time-text {
+      display: block;
+      margin-bottom: 30px;
+      font-size: 72px;
+      text-align: center; }
+      @media (min-width: 1024px) {
+        #app .timer-container .time-text {
+          font-size: 115.2px; } }
+    #app .timer-container .buttons-wrapper {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: distribute;
+          justify-content: space-around; }
 
 button {
-  width: 60px;
-  height: 60px;
-  border: 3px solid #262626;
-  border-radius: 50%;
-  -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
   outline: none;
-  cursor: pointer; }
-  button.start-stop-btn {
-    background: #eee url("../icons/flag.svg") no-repeat center; }
-    button.start-stop-btn.active {
-      background: #eee url("../icons/power.svg") no-repeat center; }
-  button.reset {
-    background: #eee url("../icons/rotate-ccw.svg") no-repeat center; }
-  button.lap {
-    background: #eee url("../icons/bookmark.svg") no-repeat center; }
+  background: none;
+  cursor: pointer;
+  width: 80px;
+  height: 40px;
+  border: 2px solid #eae7dc;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  color: #eae7dc;
+  font-size: 14px;
+  -webkit-transition: 0.2s all linear;
+  transition: 0.2s all linear; }
+  button:hover {
+    color: #e85a4f;
+    background-color: #eae7dc;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
+  @media (min-width: 1024px) {
+    button {
+      width: 96px;
+      height: 48px; } }
 
 .laps-list {
   list-style-type: none;
-  padding-top: 10px;
-  border-top: 2px solid #cccccc;
-  text-align: center; }
+  padding-top: 30px;
+  border-top: 2px solid #eae7dc;
+  text-align: center;
+  min-width: 300px;
+  max-height: 350px;
+  overflow: auto; }
+  @media (min-width: 768px) {
+    .laps-list {
+      padding: 0 20px;
+      border-top: 0;
+      border-left: 2px solid #eae7dc;
+      height: 400px; } }
+  .laps-list label {
+    display: block;
+    margin-bottom: 20px; }
   .laps-list li {
     padding: 10px 0;
-    border-bottom: 1px solid #777;
+    width: 70%;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(234, 231, 220, 0.5);
     font-size: 20px; }
     .laps-list li:last-child {
       margin-bottom: 0;

@@ -1,39 +1,12 @@
 //Styles for timer
 
-$font-stack: Helvetica, sans-serif;
-$time-font-size: 72px;
-$lap-font-size: 20px;
+@import '_variables.scss';
+@import '_mixins.scss';
 
-$primary-color: #eae7dc;
-$bg-color: #e85a4f;
-$button-bg-color: #838d8a;
-$shadow-color: rgba(0, 0, 0, 0.2);
-$item-border-color: rgba(234, 231, 220, 0.5);
-$button-border-color: #262626;
-
-$button-height: 40px;
-$button-width: 80px;
-$button-border-radius: 15px;
-$button-font-size: 14px;
-
-$tablet-width: 768px;
-$desktop-width: 1024px;
-
-@mixin tablet {
-  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
-    @content;
-  }
-}
-
-@mixin desktop {
-  @media (min-width: #{$desktop-width}) {
-    @content;
-  }
-}
 
 html, body, ul, ol {
-  margin:  0;
-  padding: 0;
+	margin:  0;
+	padding: 0;
 }
 
 body {
@@ -46,40 +19,64 @@ body {
 	padding: 70px 30px 50px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: space-evenly;
 
-	@include desktop {
+	@include tablet {
 		flex-direction: row;
+		align-items: center;
 		padding: 100px 50px 50px;
 	}
 	
-	.time-text {
-		display: block;
-		margin-bottom: 30px;
-		font-size: $time-font-size;
-		text-align: center;
-	}
+	.timer-container {
+		margin-bottom: 40px;
 
+		@include tablet {
+			margin: 0 40px 0 0;
+		}
 
-	.buttons-wrapper {
-		display: flex;
-		max-width: 250px;
-		margin: 0 auto 40px;
-		justify-content: space-around;
+		.time-text {
+			display: block;
+			margin-bottom: 30px;
+			font-size: $time-font-size;
+			text-align: center;
+
+			@include desktop {
+				font-size: $time-font-size*1.6;
+			}
+		}
+
+		.buttons-wrapper {
+			display: flex;
+			justify-content: space-around;
+		}
 	}
+	
 }
 
 button {
+	outline: none;
+	background: none;
+	cursor: pointer;
 	width: $button-width;
 	height: $button-height;
 	border: 2px solid $primary-color;
 	border-radius: $button-border-radius;
-	box-shadow: 0 0 15px $shadow-color;
-	outline: none;
-	cursor: pointer;
+	box-shadow: 0 6px 8px $shadow-color;
 	color: $primary-color;
 	font-size: $button-font-size;
-	background-color: rgba(0, 0, 0, 0);
+	// background-image: linear-gradient(to right, #B94257 0%, #e9807f 51%, $bg-color 100%);
+	transition: 0.2s all linear;
+
+	&:hover {
+		color: $button-text-color;
+		background-color: $button-bg-color;
+		box-shadow: 0 2px 2px $shadow-color;
+	}
+
+	@include desktop {
+		width: $button-width*1.2;
+		height: $button-height*1.2;
+	}
 }
 
 .laps-list {
@@ -87,8 +84,16 @@ button {
 	padding-top: 30px;
 	border-top: 2px solid $primary-color;
 	text-align: center;
-	height: 350px;
+	min-width: 300px;
+	max-height: 350px;
 	overflow: auto;
+	
+	@include tablet {
+		padding: 0 20px;
+		border-top: 0;
+		border-left: 2px solid $primary-color;
+		height: 400px;
+	}
 
 	label {
 		display: block;
