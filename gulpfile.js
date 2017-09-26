@@ -21,11 +21,9 @@ gulp.task('sass', function() {
 
 
 gulp.task('watch',  ['browser-sync', 'sass'], function() {
-  return gulp
-    .watch('app/scss/main.scss', ['sass'])
-    .on('change', function(event) {
-      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    });
+  	gulp.watch('app/scss/**/*.scss', ['sass']);
+  	gulp.watch('app/*.html', browserSync.reload); 
+  	gulp.watch('app/js/**/*.js', browserSync.reload); 	
 });
 
 gulp.task('default', ['sass', 'browser-sync', 'watch',]);
