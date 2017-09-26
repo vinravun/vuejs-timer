@@ -8,27 +8,27 @@
 	<script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
 
 	<body>
-		<div id="app">
+		<main id="app">
 			
-			<div class="timer-container">
+			<section class="card timer-container">
 				<span class="time-text" v-cloak> 
-				{{ checkSingleDigit(minutes) }}:{{ checkSingleDigit(seconds) }}:{{ checkSingleDigit(centiseconds) }} 
+					{{ checkSingleDigit(minutes) }}:{{ checkSingleDigit(seconds) }}:{{ checkSingleDigit(centiseconds) }} 
 				</span>
 
 				<div class="buttons-wrapper" v-cloak>
 					<button class="start-stop-btn" @click="toggleTimerState" v-bind:class="{ active: running }"> {{ btnLabel }} </button>
-
 					<button class="lap" @click="saveLapTime" v-if="running">LAP</button>
-					<button class="reset" @click="resetTimer" v-else>RESET</button>
+					<button class="reset" @click="resetTimer" v-else>CLEAR</button>
 				</div>
-			</div>
-
-			<ul class="laps-list" v-show="lapSet" v-cloak>
-				<!-- <label>Laps recorded</label> -->
-				<li v-for="lapItem in lapsRecorded"> {{ lapItem }}</li>
-			</ul>
-
-		</div>
+			</section>
+			
+			<section class="card laps-container" v-show="lapSet" v-cloak>
+				<h5>Laps recorded</h5>
+				<ul class="laps-list">
+					<li v-for="lapItem in lapsRecorded"> {{ lapItem }}</li>
+				</ul>
+			</section>
+		</main>
 	</body>
 
 

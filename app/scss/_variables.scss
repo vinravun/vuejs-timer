@@ -1,20 +1,24 @@
 
-$font-stack: Helvetica, sans-serif;
-$time-font-size: 72px;
+$font-stack: Roboto, sans-serif;
+$time-font-size: 52px;
 $lap-font-size: 20px;
 
-$primary-color: #eae7dc;
-$bg-color: #e85a4f;
-$shadow-color: rgba(0, 0, 0, 0.3);
+$lap-list-width: 90%;
+
+$primary-color: #eeeeee;
+$bg-color: #11999e;
+$card-bg-color1: #393e46;
+$card-bg-color2: #424242;
+$shadow-color: rgba(0, 0, 0, 0.6);
 $item-border-color: rgba(234, 231, 220, 0.5);
 
 $button-bg-color: $primary-color;
 $button-text-color: $bg-color;
 $button-border-color: #262626;
-$button-height: 40px;
+$button-height: 35px;
 $button-width: 80px;
 $button-border-radius: 10px;
-$button-font-size: 14px;
+$button-font-size: 12px;
 
 $tablet-width: 768px;
 $desktop-width: 1024px;
