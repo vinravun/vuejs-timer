@@ -1,24 +1,25 @@
 
 $font-stack: Roboto, sans-serif;
-$time-font-size: 52px;
+$time-font-size: 56px;
 $lap-font-size: 20px;
 
 $lap-list-width: 90%;
 
 $primary-color: #eeeeee;
-$bg-color: #11999e;
-$card-bg-color1: #393e46;
-$card-bg-color2: #424242;
+$bg-color1: #cb2d3e;
+$bg-color2: #ef473a;
+$card-bg-color1: #C12C2A;
+$card-bg-color2: #BB3538;
 $shadow-color: rgba(0, 0, 0, 0.6);
-$item-border-color: rgba(234, 231, 220, 0.5);
+$item-border-color: rgba(234, 231, 220, 0.1);
 
 $button-bg-color: $primary-color;
-$button-text-color: $bg-color;
+$button-text-color: $bg-color1;
 $button-border-color: #262626;
 $button-height: 35px;
 $button-width: 80px;
-$button-border-radius: 10px;
-$button-font-size: 12px;
+$button-border-radius: 25px;
+$button-font-size: 10px;
 
 $tablet-width: 768px;
 $desktop-width: 1024px;
