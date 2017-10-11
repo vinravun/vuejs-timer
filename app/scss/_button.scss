@@ -1,0 +1,26 @@
+button {
+	outline: none;
+	background: none;
+	cursor: pointer;
+	width: $button-width;
+	height: $button-height;
+	border: 2px solid $primary-color;
+	border-radius: $button-border-radius;
+	box-shadow: 0 6px 6px -2px $shadow-color;
+	color: $primary-color;
+	font-size: $button-font-size;
+	transition: 0.1s all linear;
+	
+	&.active, &:active {
+		color: $button-text-color;
+		background-color: $button-bg-color;
+		box-shadow: 0 2px 2px -2px $shadow-color;
+	}
+
+	@include tablet {
+		width: $button-width*1.2;
+		height: $button-height*1.2;
+		font-size: $button-font-size*1.2;
+		font-weight: 600;
+	}
+}

@@ -2,55 +2,8 @@
 
 @import '_variables.scss';
 @import '_mixins.scss';
-
-
-html, body, ul, ol, h2, h5 {
-	margin:  0;
-	padding: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-html, body {
-	height: 100%;
-	color: $primary-color;
-	font: 100% $font-stack;
-}
-
-button {
-	outline: none;
-	background: none;
-	cursor: pointer;
-	width: $button-width;
-	height: $button-height;
-	border: 2px solid $primary-color;
-	border-radius: $button-border-radius;
-	box-shadow: 0 6px 6px -2px $shadow-color;
-	color: $primary-color;
-	font-size: $button-font-size;
-	transition: 0.1s all linear;
-	
-	&.active, &:active {
-		color: $button-text-color;
-		background-color: $button-bg-color;
-		box-shadow: 0 2px 2px -2px $shadow-color;
-	}
-
-	@include desktop {
-		width: $button-width*1.2;
-		height: $button-height*1.2;
-	}
-}
-
-.card {
-	padding: 30px 20px;
-	background-color: $card-bg-color1;
-	box-shadow: 0 12px 10px -4px $shadow-color;
-	border: 2px solid lighten($card-bg-color1, 1);
-	border-radius: 5px;
-}
+@import '_reset.scss';
+@import '_button.scss';
 
 #app {
 	height: 100%;
@@ -61,9 +14,7 @@ button {
 	
 	@include tablet {
 		flex-direction: row;
-		justify-content: space-evenly;
-		align-items: center;
-		padding: 100px 50px 50px;
+		align-items: stretch;
 	}
 	
 	section.timer-container {
@@ -71,6 +22,7 @@ button {
         background: linear-gradient(to bottom, $bg-color1 0%, $bg-color2 100%);
 		width: 100%;
 		flex: 1 1 auto;
+		box-shadow: 0 -2px 20px 5px lighten($shadow-color, 20);
 
 
 		.time-text {
@@ -80,7 +32,11 @@ button {
 			line-height: 40px;
 			font-size: $time-font-size;
 			font-weight: 300;
-			text-shadow: 0px 0px 15px blublack;
+
+			@include tablet {
+				font-size: $time-font-size*2;
+				line-height: $time-font-size*2;
+			}
 		}
 
 		.buttons-wrapper {
@@ -92,7 +48,6 @@ button {
 	}
 	
 	aside.laps-container {
-		max-width: 400px;
 		width: 100%;
 		height: 100%;
 		overflow-y: auto;
@@ -101,17 +56,15 @@ button {
 		flex: 0 1 auto;
 		
 		position: relative;
-		z-index: 5;
-		box-shadow: 0 -2px 5px 2px lighten($shadow-color, 20);
+		z-index: -1;
 
 		padding: 30px 20px;
 		background: linear-gradient(to bottom, $card-bg-color1 0%, $card-bg-color2 100%);
 
 		@include tablet {
-			padding-bottom: 20px;
-			margin: 0 10px;
 			border-top: 0;
-			height: 400px;
+			max-height: 100%;
+			width: 45%;
 		}
 		
 		h5 {
@@ -129,7 +82,7 @@ button {
 				width: 80%;
 				margin: 0 auto;
 				border-bottom: 1px solid $item-border-color;
-				font-size: $lap-font-size*0.8;
+				font-size: $lap-font-size;
 
 				&:last-child {
 					margin-bottom: 0;
